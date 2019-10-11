@@ -22,6 +22,12 @@
 - git pull 从 github 上拉取最新的代码
 - git push 将代码推送到 github 上
 
+## GIT 分支
+
+- git branch (分支名) 查看所有分支/新建某个分支
+- git checkout 分支名 切换到某个分支
+- git merge 分支名 将某个分支合并到当前分支下
+
 ## 将本地仓库上传到 GitHub
 
 - SSH
