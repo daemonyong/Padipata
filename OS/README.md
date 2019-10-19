@@ -26,6 +26,8 @@ netstat                 //显示网络状态               <-pantu>
 useradd name            //添加用户                   <-r系统用户-g指定用户组>
 usermod name            //修改用户                   <-u用户UID-g所属分组>
 userdel name            //删除用户                   <-r删除相关文件>
+kill PID                //结束执行中的程序
+shutdown -h now         //立即关机
 reboot                  //重启
 -------------------------------------------------------------
 管道命令 | 将前面的结果给后面的命令
