@@ -101,7 +101,7 @@ B：ncat -nv IP 地址 端口 --ssl
 -sS/sT/sA/sW/sM                 //使用TCP SYN/Connect()/ACK/Window/Maimon 扫描方式
 -sU                             //使用UDP扫描方式确定目标主机的UDP端口状况
 -sN/sF/sX                       //使用TCP Null/FIN/Xmas秘密扫描方式来协助探测对方的TCP端口状态
--sI <僵尸机:port>                //使用idle scan方式来扫描目标主机
+-sI <idle:port>                 //使用idle scan方式来扫描目标主机
 ```
 
 - 版本侦测
