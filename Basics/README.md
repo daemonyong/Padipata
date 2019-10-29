@@ -63,3 +63,27 @@ taskkill /pid num                          //结束进程            </f强行�
 ipconfig /flushdns                         //清除本地DNS缓存
 ```
 
+## MySQL
+
+```
+create database <name>;                     //创建数据库
+drop database <name>;                       //删除数据库
+show databases;                             //显示数据库
+use <name>;                                 //连接数据库
+select database();                          //当前连接的数据库
+-------------------------------------------------------------
+show tables;                                //显示数据表
+desc <table>;                               //获取数据表结构
+drop table <name>;                          //删除数据表
+-------------------------------------------------------------
+insert into <table> (key) values (..);      //表中插入数据
+select * from <table>;                      //查看表中所有数据
+select * from <table> where <if>;           //查看符合条件数据
+delete from <table> where <if>;             //删除符合条件数据
+update <table> set <val> where <if>;        //修改符合条件数据
+-------------------------------------------------------------
+union [all]                                  //联合查询
+select * from <table> into outfile 'path';   //导出数据
+mysqldump -u user -p data > file             //导出数据库
+mysqldump -u user -p data table > file       //导出数据表
+```

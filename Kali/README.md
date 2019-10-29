@@ -26,7 +26,7 @@ update-rc.d ssh enable/disabled       #开启/关闭ssh服务开机自启动
 leafpad /etc/ssh/sshd_config          #配置SSH
 ---------------------------------------------
 PasswordAuthentication yes
-permitrootlogin  yes
+permitrootlogin yes
 ```
 
 ## Apache
