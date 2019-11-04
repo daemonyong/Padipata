@@ -58,3 +58,7 @@
 - [智能代码](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode) -> Visual Studio IntelliCode
 - [代码拼写检查](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) -> Code Spell Checker
 - [代码格式化](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -> Prettier-Code formatter
+- [ES6 代码片段](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets) -> JavaScript (ES6) code snippets
+- [即时反馈](https://marketplace.visualstudio.com/items?itemName=WallabyJs.quokka-vscode) -> Quokka.js
+- [Vue 工具](https://marketplace.visualstudio.com/items?itemName=octref.vetur) -> Vetur
+- [Vue2 代码片段](https://marketplace.visualstudio.com/items?itemName=hollowtree.vue-snippets) -> Vue 2 Snippets
