@@ -1,4 +1,3 @@
-# 不断的进步可以使你成为茁壮的韭菜
+# 世界这么大,我想去看看
 ## [Kali](./Kali) 
-## [Tools](./Tools)
 ## [Basics](./Basics)

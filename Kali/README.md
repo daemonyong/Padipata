@@ -1,6 +1,6 @@
 # Kali
 
-## 更新升级
+## Update
 
 ```
 apt-get update                  //更新软件包列表库
@@ -9,14 +9,6 @@ apt-get upgrade                 //更新安装的软件包
 apt-get dist-upgrade            //根据依赖关系更新
 apt-get clean                   //清除缓存索引
 reboot                          //重启电脑
-```
-
-## 网络问题
-
-```
-service network-manager stop
-rm /var/lib/NetworkManager/NetworkManager.state
-service network-manager start
 ```
 
 ## SSH
@@ -90,6 +82,7 @@ service apache2 start/restart/stop    #开启/重启/停止Apache服务
 - 端口扫描
 
 ```
+-p <port>                       //只扫描指定的端口
 -F                              //快速扫描
 -sS/sT/sA/sW/sM                 //使用TCP SYN/Connect()/ACK/Window/Maimon 扫描方式
 -sU                             //使用UDP扫描方式确定目标主机的UDP端口状况
@@ -128,12 +121,13 @@ service apache2 start/restart/stop    #开启/重启/停止Apache服务
 
 ```
 service nessusd start/stop          #开启/停止Nessus
-https://192.168.253.130:8834/       #网站地址(可变)
+https://192.168.253.139:8834/       #网站地址(可变)
 ```
 
 ## Hydra
 
-hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机 IP service 服务
+> hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务 <br>
+> hydra -l 用户名 -P 密码字典 -t 2 -e ns -vV 主机地址 http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
 
 ```
 -R                            //继续从上一次进度开始
@@ -141,7 +135,9 @@ hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机 IP service 服�
 -L                            //指定用户名字典
 -p                            //指定密码
 -P                            //指定密码字典
+-x min:max:charset            //密码暴力生成("-x -h"获取更多帮助)
 -e [n/s/ns]                   //空密码和密码=用户名
+-u                            //循环用户,而不是密码(-x同样有效)
 -o [file]                     //输出成文件
 -t [num]                      //同时运行的线程数,默认16
 -w [time]                     //设置最大超时的时间,默认30s
@@ -152,7 +148,7 @@ hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机 IP service 服�
 
 ## Medusa
 
-medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
+> medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
 
 ```
 -h                              //目标主机名或IP地址
@@ -174,24 +170,46 @@ medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
 -v <0-6>                        //显示详细信息
 ```
 
+## John
+
+> unshadow /etc/passwd /etc/shadow > passwd.txt
+> john --wordlist=/usr/share/john/password.lst passwd.txt
+
+```
+--single[=section[,..]]             //single crack模式,使用默认或命名规则
+--wordlist[=file] --stdin           //单词列表模式,从文件或标准输出中读取单词
+                  --pipe            //和--stdin一样,批量读取,并允许使用规则
+--loopback[=file]                   //类似于--wordlist，但从.pot文件中提取单词
+--rules[=section[,..]]              //启用单词处理规则,使用默认规则或命名规则
+--incremental[=mode]                //"增量"模式[使用部分模式]
+--mask[=mask]                       //使用掩码模式(或john.conf中的默认设置)
+--external=mode                     //外部模式或字过滤器
+--restore[=name]                    //恢复中断的会话[名为name]
+--session=name                      //进行新的会话"name"
+--show                              //显示破解的密码
+--format=name                       //强制输入name类型的哈希
+
+```
+
 ## Hashcat
 
-hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
+> hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
 
 ```
 -a <0/1/2>                      //指定要使用的破解模式,[0-字典攻击,1-组合攻击,3-掩码攻击]
 -m <id>                         //指定要破解的hash类型ID,如果不指定类型默认为MD5
--o                              //将破解成功的hash输出在指定目录的文件中
---increment                     //启用增量破解模式
---increment-min                 //密码最小长度
---increment-max                 //密码最大长度
---outfile-format                //指定破解结果的输出格式ID,默认3
+-i  --increment                 //启用增量破解模式
+    --increment-min             //密码最小长度
+    --increment-max             //密码最大长度
+-o  --outfile                   //将破解成功的hash输出在指定目录的文件中    
+    --outfile-format            //指定破解结果的输出格式ID,默认3
+--force                         //忽略警告信息
 --show                          //显示已经破解的hash及该hash所对应的明文
 ```
 
 ## Bettercap
 
-开启本地(远程)的 WebUI -------→ bettercap -caplet http(s)-ui
+> 开启本地(远程)的 WebUI -------→ bettercap -caplet http(s)-ui
 
 ```
 net.show          //展示网络情况
@@ -208,6 +226,12 @@ set net.sniff.verbose false               //精简化显示数据
 set dns.spoof.domains google.com          //设置要欺骗的域名
 set dns.spoof.address desired_IP          //设置要重定向的地址
 set dns.spoof.all true                    //回应任何请求(默认只会回应那些对本地的请求)
+```
+
+## Metasploit
+
+```
+
 ```
 
 ## Great Tools
