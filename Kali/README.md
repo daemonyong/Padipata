@@ -59,6 +59,33 @@ arpspoof -i eth0 -t 192.168.0.144 192.168.0.1     //arp欺骗
 driftnet -i eth0                                  //图片嗅探
 ```
 
+## Dos
+
+> iptables -A OUTPUT -p tcp --tcp-flags RST RST -d 192.168.0.1 -j DROP
+
+- slowhttptest
+
+```
+-H              //Slowloris模式:完整http请求是以\r\n\r\n结尾,攻击时仅发送\r\n(耗尽应用并发连接池)
+-B              //slow post模式:通过声明content-length后,body缓慢发送(耗尽应用并发连接池)
+-s size			//指定Slow POST测试的Content-Length大小
+-i time         //在slowrois和Slow POST模式中,指定发送数据间的间隔
+-R              //Apache Range Header模式:客户端发送大文件,体积超出body限制进行分段(耗尽CPU,内存)
+-a start		//设置Range Header攻击的范围说明符的起始值
+-b big			//设置Range Header攻击的范围说明符的极限值
+-X              //slow read模式:向服务器发送正常请求,但慢速读取响应(TCP window窗口大小,耗尽连接池)
+-w num          //slow read模式中指定tcp窗口范围下限
+-y num          //slow read模式中指定tcp窗口范围上限
+-z num  		//指定每个read操作从接收缓冲区读取的字节数
+-n time         //在Slow Read模式下,指定每次操作的时间间隔
+-u URL          //目标的URL地址(http://localhost/)
+-c num          //建立目标连接数
+-r num          //每秒连接数
+-p time         //指定等待时间来确认DoS攻击已经成功
+-t method       //在请求时使用什么操作,默认GET
+-d host:port    //通过host:port上的HTTP代理定向的所有流量
+```
+
 ## Apache
 
 ```
@@ -115,6 +142,20 @@ service apache2 start/restart/stop    #开启/重启/停止Apache服务
 -g/--source-port <port>          //使用指定源端口
 --data-length <num>              //填充随机数据让数据包长度达到Num
 --ttl <time>                     //设置time-to-live时间
+```
+
+## Google
+
+```
+intitle:                    //搜索网页标题中是否有我们所要找的字符
+intext:                     //寻找特定网页里的关键字
+inurl:                      //搜索网址URL里面包含指定关键词的页面
+site:                       //只搜索指定网域里的关键词
+filetype:                   //搜索指定类型的文件
+link:                       //按引用搜索将列出所有包含特定链接的页面
+related:                    //按相似搜索将列出与指定网页相似的页面
+cache:                      //网页快照,google将返回给你他储存下来的历史页面
+index of                    //发现允许目录浏览的web网站
 ```
 
 ## Nessus
@@ -188,7 +229,6 @@ https://192.168.253.139:8834/       #网站地址(可变)
 --session=name                      //进行新的会话"name"
 --show                              //显示破解的密码
 --format=name                       //强制输入name类型的哈希
-
 ```
 
 ## Hashcat
@@ -201,7 +241,7 @@ https://192.168.253.139:8834/       #网站地址(可变)
 -i  --increment                 //启用增量破解模式
     --increment-min             //密码最小长度
     --increment-max             //密码最大长度
--o  --outfile                   //将破解成功的hash输出在指定目录的文件中    
+-o  --outfile                   //将破解成功的hash输出在指定目录的文件中
     --outfile-format            //指定破解结果的输出格式ID,默认3
 --force                         //忽略警告信息
 --show                          //显示已经破解的hash及该hash所对应的明文
@@ -230,13 +270,15 @@ set dns.spoof.all true                    //回应任何请求(默认只会回�
 
 ## Metasploit
 
+- Meterpreter
+
 ```
 
 ```
 
 ## Great Tools
 
-- nc
+- NC
 
 ```
 -h     //显示帮助选项
@@ -254,7 +296,7 @@ A：nc -lp 端口 | 解密方式 > 文件
 B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
 ```
 
-- ncat
+- Ncat
 
 ```
 --allow         //只允许给定的主机连接到 ncat
@@ -267,11 +309,11 @@ B：ncat -nv IP 地址 端口 --ssl
 
 ## Web Tools
 
-- dirb 目录扫描工具
+- dirb 目录扫描
+
+> dirb URL \[file] \[options]
 
 ```
-    dirb <url_base> [<wordlist_file(s)>][options]
----------------------------------------------------------
 -c <cookie_string>                //设置HTTP请求的cookie
 -H <header_string>                //向HTTP请求添加自定义头
 -i                                //使用不区分大小写的搜索
@@ -284,10 +326,52 @@ B：ncat -nv IP 地址 端口 --ssl
 -z <s>                            //添加一个毫秒的延迟,以避免造成过多的溢出
 ```
 
-## Window-collect
+- skipfish 网站扫描
 
-- laZagne
-- mimikatz
+> dpkg -L skipfish | grep wl <br>
+> skipfish \[options...] -W wordlist -o path url
+
+```
+-A user:pass                      //使用指定的HTTP身份验证凭据
+-C name=val                       //将自定义Cookie附加到所有请求
+-H name=val                       //将自定义HTTP标头附加到所有请求
+-b <i|f|p>                        //使用与MSIE/Firefox/iPhone一致的标头
+-N                                //不接受任何新的cookie
+--auth-form url                   //表单认证URL
+--auth-user user                  //表单认证用户名
+--auth-pass pass                  //表单认证密码
+--auth-verify-url                 //认证成功跳转的URL
+-I string                         //只追踪与「string」匹配的网址
+-X string                         //排除与「string」匹配的网址
+-K string                         //不对指定参数进行Fuzz测试
+-o path                           //将输出写入指定目录（必填）
+-W wordlist                       //使用指定的读写词表
+-S wordlist                       //加载补充只读单词表
+-l num                            //每秒最大请求数
+```
+
+- sqlmap 数据库检测
+
+```
+-d                                #DBMS://user:password@ip:port/database_name
+-u url                            #目标网址(例如"http://www.site.com/vuln.php?id=1")
+-l logfile                        #解析来自Burp或WebScarab代理日志文件的目标
+-m file                           #扫描文本文件中给定的多个目标
+-r reqfile                        #从文件加载HTTP请求
+-p parameter                      #可测试的参数
+--method=METHOD                   #强制使用给定的HTTP方法(例如PUT)
+--data=DATA                       #通过POST发送数据参数(例如"id = 1")
+--cookie=COOKIE                   #HTTP Cookie标头值
+--random-agent                    #使用随机选择的HTTP User-Agent标头值
+--proxy=PROXY                     #使用代理连接到目标URL
+--tor                             #使用Tor匿名网络
+--force-ssl                       #强制使用SSL/HTTPS
+--level=LEVEL                     #要执行的测试级别(1-5,默认为1)
+--risk=RISK                       #执行测试的风险(0-3，默认为1)
+--technique=TECH                  #要使用的SQL注入技术(默认为“BEUSTQ”)
+```
+
+## Mimikatz
 
 ```
 privilege::debug

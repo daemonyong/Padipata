@@ -14,21 +14,6 @@
 | 数据链路层 | 互连设备之间传送和识别数据帧 | PPP,以太网,Wi-Fi...                                                                                                                                                          |
 |   物理层   |      传输数据的物理介质      | DTE--**数据终端设备**<br/>DCE--**数据通信设备或电路连接设备**                                                                                                                |
 
-- 服务相关
-
-|     服务     | 攻击方向 |      服务      | 攻击方向 |
-| :----------: | :------: | :------------: | :------: |
-| FTP文件传输  |          |  Ldap目录访问  |          |
-| SSH远程连接  |          | Telnet远程连接 |          |
-| DNS域名解析  |          |  NTP网络时间   |          |
-| SMTP邮件服务 |          |      POP3      |          |
-|  HTTP/HTTPS  |          |     mysql      |          |
-| DHCP动态主机 |          |  SNMP网络管理  |          |
-|    mssql     |          |     oracle     |          |
-|     SMB      |          |     socket     |          |
-|     RPC      |          |  Linux Rexec   |          |
-| Rdp远程桌面  |          |      VNC       |          |
-
 ## Linux
 
 - 基本命令
@@ -185,7 +170,7 @@ git config --global user.email "email@example.com"
 git init                        //初始化本地仓库.git
 git status -sb                  //显示当前所有文件的状态
 git add path/.(all)             //用来将变动加到暂存区
-git commit -m "info"            //用来正式提交变动,提交至.git仓库
+git commit -m "info"             //用来正式提交变动,提交至.git仓库
 git log/git log --oneline       //查看提交的版本信息
 git reflog                      //查看全部的历史版本信息
 git reset --hard 'number'       //通过版本号回退到某一个版本
