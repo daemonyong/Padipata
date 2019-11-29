@@ -68,15 +68,15 @@ driftnet -i eth0                                  //图片嗅探
 ```
 -H              //Slowloris模式:完整http请求是以\r\n\r\n结尾,攻击时仅发送\r\n(耗尽应用并发连接池)
 -B              //slow post模式:通过声明content-length后,body缓慢发送(耗尽应用并发连接池)
--s size			//指定Slow POST测试的Content-Length大小
+-s size         //指定Slow POST测试的Content-Length大小
 -i time         //在slowrois和Slow POST模式中,指定发送数据间的间隔
 -R              //Apache Range Header模式:客户端发送大文件,体积超出body限制进行分段(耗尽CPU,内存)
--a start		//设置Range Header攻击的范围说明符的起始值
--b big			//设置Range Header攻击的范围说明符的极限值
+-a start        //设置Range Header攻击的范围说明符的起始值
+-b big          //设置Range Header攻击的范围说明符的极限值
 -X              //slow read模式:向服务器发送正常请求,但慢速读取响应(TCP window窗口大小,耗尽连接池)
 -w num          //slow read模式中指定tcp窗口范围下限
 -y num          //slow read模式中指定tcp窗口范围上限
--z num  		//指定每个read操作从接收缓冲区读取的字节数
+-z num          //指定每个read操作从接收缓冲区读取的字节数
 -n time         //在Slow Read模式下,指定每次操作的时间间隔
 -u URL          //目标的URL地址(http://localhost/)
 -c num          //建立目标连接数
