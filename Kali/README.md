@@ -3,12 +3,12 @@
 ## Update
 
 ```
-apt-get update                  //更新软件包列表库
-apt-get install kali-linux-all  //安装所有kali工具包
-apt-get upgrade                 //更新安装的软件包
-apt-get dist-upgrade            //根据依赖关系更新
-apt-get clean                   //清除缓存索引
-reboot                          //重启电脑
+apt-get update                      //更新软件包列表库
+apt-get install kali-linux-all      //安装所有kali工具包
+apt-get upgrade                     //更新安装的软件包
+apt-get dist-upgrade                //根据依赖关系更新
+apt-get clean                       //清除缓存索引
+reboot                              //重启电脑
 ```
 
 ## SSH
