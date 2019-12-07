@@ -40,6 +40,7 @@ permitrootlogin yes
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
 /home/ftp                             #文件存放路径
+username:anonymous password:null	  #匿名登录
 ------------------------------------
 echo open 192.168.253.139 21>ftp.txt
 echo ftp>>ftp.txt
@@ -219,16 +220,16 @@ https://192.168.253.139:8834/       #网站地址(可变)
 
 ```
 --single[=section[,..]]             //single crack模式,使用默认或命名规则
---wordlist[=file] --stdin           //单词列表模式,从文件或标准输出中读取单词
-                  --pipe            //和--stdin一样,批量读取,并允许使用规则
---loopback[=file]                   //类似于--wordlist，但从.pot文件中提取单词
---rules[=section[,..]]              //启用单词处理规则,使用默认规则或命名规则
---incremental[=mode]                //"增量"模式[使用部分模式]
---mask[=mask]                       //使用掩码模式(或john.conf中的默认设置)
+--wordlist[file] --stdin            //单词列表模式,从文件或标准输出中读取单词
+                 --pipe             //和--stdin一样,批量读取,并允许使用规则
+--loopback[file]                    //类似于--wordlist，但从.pot文件中提取单词
+--rules[section[,..]]               //启用单词处理规则,使用默认规则或命名规则
+--incremental[mode]                 //"增量"模式[使用部分模式]
+--mask[mask]                        //使用掩码模式(或john.conf中的默认设置)
 --external=mode                     //外部模式或字过滤器
---restore[=name]                    //恢复中断的会话[名为name]
+--restore[name]                     //恢复中断的会话[名为name]
 --session=name                      //进行新的会话"name"
---show                              //显示破解的密码
+--show[file]                        //显示破解的密码
 --format=name                       //强制输入name类型的哈希
 ```
 
