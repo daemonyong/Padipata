@@ -220,8 +220,9 @@ https://192.168.253.139:8834/       #网站地址(可变)
 
 ## John
 
-> unshadow /etc/passwd /etc/shadow > passwd.txt
-> john --wordlist=/usr/share/john/password.lst passwd.txt
+> unshadow /etc/passwd /etc/shadow > passwd
+> python /usr/share/john/ssh2john.py id_rsa > passwd
+> john --wordlist=/usr/share/wordlists/rockyou.txt  passwd
 
 ```
 --single[=section[,..]]             //single crack模式,使用默认或命名规则
