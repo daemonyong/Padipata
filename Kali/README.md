@@ -153,22 +153,22 @@ service apache2 start/restart/stop    #开启/重启/停止Apache服务
 ## Google
 
 ```
-intitle:                    //搜索网页标题中是否有我们所要找的字符
-intext:                     //寻找特定网页里的关键字
-inurl:                      //搜索网址URL里面包含指定关键词的页面
-site:                       //只搜索指定网域里的关键词
-filetype:                   //搜索指定类型的文件
-link:                       //按引用搜索将列出所有包含特定链接的页面
-related:                    //按相似搜索将列出与指定网页相似的页面
-cache:                      //网页快照,google将返回给你他储存下来的历史页面
-index of                    //发现允许目录浏览的web网站
+intitle:                         //搜索网页标题中是否有我们所要找的字符
+intext:                          //寻找特定网页里的关键字
+inurl:                           //搜索网址URL里面包含指定关键词的页面
+site:                            //只搜索指定网域里的关键词
+filetype:                        //搜索指定类型的文件
+link:                            //按引用搜索将列出所有包含特定链接的页面
+related:                         //按相似搜索将列出与指定网页相似的页面
+cache:                           //网页快照,google将返回给你他储存下来的历史页面
+index of                         //发现允许目录浏览的web网站
 ```
 
 ## Nessus
 
 ```
-service nessusd start/stop          #开启/停止Nessus
-https://192.168.253.139:8834/       #网站地址(可变)
+service nessusd start/stop       #开启/停止Nessus
+https://192.168.253.139:8834/    #网站地址(可变)
 ```
 
 ## Hydra
@@ -228,18 +228,18 @@ https://192.168.253.139:8834/       #网站地址(可变)
 > john --wordlist=/usr/share/wordlists/rockyou.txt  passwd
 
 ```
---single[=section[,..]]             //single crack模式,使用默认或命名规则
---wordlist[file] --stdin            //单词列表模式,从文件或标准输出中读取单词
-                 --pipe             //和--stdin一样,批量读取,并允许使用规则
---loopback[file]                    //类似于--wordlist，但从.pot文件中提取单词
---rules[section[,..]]               //启用单词处理规则,使用默认规则或命名规则
---incremental[mode]                 //"增量"模式[使用部分模式]
---mask[mask]                        //使用掩码模式(或john.conf中的默认设置)
---external=mode                     //外部模式或字过滤器
---restore[name]                     //恢复中断的会话[名为name]
---session=name                      //进行新的会话"name"
---show[file]                        //显示破解的密码
---format=name                       //强制输入name类型的哈希
+--single[=section[,..]]          //single crack模式,使用默认或命名规则
+--wordlist[file] --stdin         //单词列表模式,从文件或标准输出中读取单词
+                 --pipe          //和--stdin一样,批量读取,并允许使用规则
+--loopback[file]                 //类似于--wordlist，但从.pot文件中提取单词
+--rules[section[,..]]            //启用单词处理规则,使用默认规则或命名规则
+--incremental[mode]              //"增量"模式[使用部分模式]
+--mask[mask]                     //使用掩码模式(或john.conf中的默认设置)
+--external=mode                  //外部模式或字过滤器
+--restore[name]                  //恢复中断的会话[名为name]
+--session=name                   //进行新的会话"name"
+--show[file]                     //显示破解的密码
+--format=name                    //强制输入name类型的哈希
 ```
 
 ## Hashcat
@@ -247,15 +247,15 @@ https://192.168.253.139:8834/       #网站地址(可变)
 > hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
 
 ```
--a <0/1/2>                      //指定要使用的破解模式,[0-字典攻击,1-组合攻击,3-掩码攻击]
--m <id>                         //指定要破解的hash类型ID,如果不指定类型默认为MD5
--i  --increment                 //启用增量破解模式
-    --increment-min             //密码最小长度
-    --increment-max             //密码最大长度
--o  --outfile                   //将破解成功的hash输出在指定目录的文件中
-    --outfile-format            //指定破解结果的输出格式ID,默认3
---force                         //忽略警告信息
---show                          //显示已经破解的hash及该hash所对应的明文
+-a <0/1/2>                        //指定要使用的破解模式[0-字典攻击,1-组合攻击,3-掩码攻击]
+-m <id>                           //指定要破解的hash类型ID,如果不指定类型默认为MD5
+-i  --increment                   //启用增量破解模式
+    --increment-min               //密码最小长度
+    --increment-max               //密码最大长度
+-o  --outfile                     //将破解成功的hash输出在指定目录的文件中
+    --outfile-format              //指定破解结果的输出格式ID,默认3
+--force                           //忽略警告信息
+--show                            //显示已经破解的hash及该hash所对应的明文
 ```
 
 ## Bettercap
