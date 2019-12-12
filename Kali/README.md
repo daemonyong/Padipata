@@ -175,24 +175,24 @@ https://192.168.253.139:8834/       #网站地址(可变)
 
 > hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务
 >
-> hydra -l 用户名 -P 密码字典 -t 2 -e ns -vV 主机地址 http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
+> http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
 
 ```
--R                            //继续从上一次进度开始
--l                            //指定用户名
--L                            //指定用户名字典
--p                            //指定密码
--P                            //指定密码字典
--x min:max:charset            //密码暴力生成("-x -h"获取更多帮助)
--e [nsr]                      //空密码,密码=用户名,颠倒
--u                            //循环用户,而不是密码(-x同样有效)
--o [file]                     //输出成文件
--t [num]                      //同时运行的线程数,默认16
--w [time]                     //设置最大超时的时间,默认30s
--vV                           //显示详细过程
--S                            //采用SSL链接
--s [port]                     //指定非默认端口
--f  					  	  //当破解成功时就中止
+-R                             //继续从上一次进度开始
+-l                             //指定用户名
+-L                             //指定用户名字典
+-p                             //指定密码
+-P                             //指定密码字典
+-x min:max:charset             //密码暴力生成("-x -h"获取更多帮助)
+-e [nsr]                       //空密码,密码=用户名,颠倒
+-u                             //循环用户,而不是密码(-x同样有效)
+-o [file]                      //输出成文件
+-t [num]                       //同时运行的线程数,默认16
+-w [time]                      //设置最大超时的时间,默认30s
+-vV                            //显示详细过程
+-S                             //采用SSL链接
+-s [port]                      //指定非默认端口
+-f                             //当破解成功时就中止
 ```
 
 ## Medusa
