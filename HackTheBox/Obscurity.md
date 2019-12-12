@@ -50,6 +50,7 @@ cat nhttpd.conf
 ![](./img/Traverxec-06.png)
 
 >**拿到的密文放到服务器去跑，半天没出来。。。**
+>
 >**上面并没有发现public_www目录，怀疑在david中**
 
 ```
