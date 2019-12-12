@@ -23,9 +23,9 @@ nmap -A 192.168.56.103
 ```
 ftp
 open 192.168.56.103
-anonymous			  # 密码为空
+anonymous			  #密码为空
 ls
-get backup			  # 下载backup
+get backup			  #下载backup
 bye
 ```
 
@@ -34,8 +34,8 @@ bye
 > **查看文件发现五个用户的哈希，我们使用john破解**
 
 ```
-cat backup		# 将哈希写入hash
-vim hash		# 靶机名sunset,所有我将sunset写在首行
+cat backup		#将哈希写入hash
+vim hash		#靶机名sunset,所有我将sunset写在首行
 john hash
 ```
 
@@ -52,7 +52,7 @@ ssh sunset@192.168.56.103
 ![](./img/Sunset-05.png)
 
 ```
-# 发现哈希，然而好像没什么用
+#发现哈希，然而好像没什么用
 sudo -l
 ```
 

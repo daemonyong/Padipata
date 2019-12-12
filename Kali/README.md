@@ -3,12 +3,12 @@
 ## Update
 
 ```
-apt-get update                      //更新软件包列表库
-apt-get install kali-linux-all      //安装所有kali工具包
-apt-get upgrade                     //更新安装的软件包
-apt-get dist-upgrade                //根据依赖关系更新
-apt-get clean                       //清除缓存索引
-reboot                              //重启电脑
+apt-get update                       //更新软件包列表库
+apt-get install kali-linux-all       //安装所有kali工具包
+apt-get upgrade                      //更新安装的软件包
+apt-get dist-upgrade                 //根据依赖关系更新
+apt-get clean                        //清除缓存索引
+reboot                               //重启电脑
 ```
 
 ## SSH
@@ -173,7 +173,8 @@ https://192.168.253.139:8834/       #网站地址(可变)
 
 ## Hydra
 
-> hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务 <br>
+> hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务
+>
 > hydra -l 用户名 -P 密码字典 -t 2 -e ns -vV 主机地址 http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
 
 ```
@@ -183,7 +184,7 @@ https://192.168.253.139:8834/       #网站地址(可变)
 -p                            //指定密码
 -P                            //指定密码字典
 -x min:max:charset            //密码暴力生成("-x -h"获取更多帮助)
--e [nsr]                   	  //空密码,密码=用户名,颠倒
+-e [nsr]                      //空密码,密码=用户名,颠倒
 -u                            //循环用户,而不是密码(-x同样有效)
 -o [file]                     //输出成文件
 -t [num]                      //同时运行的线程数,默认16
@@ -221,7 +222,9 @@ https://192.168.253.139:8834/       #网站地址(可变)
 ## John
 
 > unshadow /etc/passwd /etc/shadow > passwd
+>
 > python /usr/share/john/ssh2john.py id_rsa > passwd
+>
 > john --wordlist=/usr/share/wordlists/rockyou.txt  passwd
 
 ```
@@ -379,7 +382,8 @@ B：ncat -nv IP 地址 端口 --ssl
 
 - skipfish 网站扫描
 
-> dpkg -L skipfish | grep wl <br>
+> dpkg -L skipfish | grep wl
+>
 > skipfish \[options...] -W wordlist -o path url
 
 ```
