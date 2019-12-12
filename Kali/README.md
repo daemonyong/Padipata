@@ -39,7 +39,7 @@ permitrootlogin yes
 
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
-username:anonymous password:null	  #匿名登录
+username:anonymous password:null      #匿名登录
 ------------------------------------
 open                #连接FTP服务器
 get                 #下载指定文件
