@@ -433,6 +433,6 @@ sekurlsa::logonpasswords full
 ## Expand
 
 - [中国蚁剑](https://github.com/AntSwordProject/AntSword-Loader)
-- [Linux 枚举和提权检查](https://github.com/rebootuser/LinEnum)
-- [web 密码检索](https://github.com/djhohnstein/SharpWeb)
+- [Linux枚举和提权检查](https://github.com/rebootuser/LinEnum)
+- [web密码检索](https://github.com/djhohnstein/SharpWeb)
 - [密码检索工具](https://github.com/AlessandroZ/LaZagne)

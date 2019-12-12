@@ -85,7 +85,7 @@ cd /scripts
 
 ![](./img/Sunset：Nightfall-11.png)
 
->这是一个受限的shell，因此我们要想办法
+> **这是一个受限的shell，因此我们要想办法**
 
 ```
 cd /home/nightfall
