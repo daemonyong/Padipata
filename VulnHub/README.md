@@ -4,8 +4,8 @@
 
 ## [bossplayersCTF](./bossplayersCTF.md)
 
-## [Sunset：dawn](./Sunset：dawn.md)
+## [Sunset:dawn](./Sunset-dawn.md)
 
-## [Sunset：nightfall](./Sunset：nightfall.md)
+## [Sunset:nightfall](./Sunset-nightfall.md)
 
 ## [Sunset](./Sunset.md)
