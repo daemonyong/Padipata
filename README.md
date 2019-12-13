@@ -6,13 +6,22 @@
 
 ## Basics
 
-Basics “基础” 顾名思义这是必须掌握的基本知识，而且它并不完善，我正在不断的补充它。如果你需要，[阅览](./Basics)它或许可以帮助到你。
+Basics “基础” 顾名思义这是必须掌握的基础，而且它并不完善，我正在不断的补充它。如果你需要，[阅览](./Basics)它或许可以帮助到你。
+
+常用链接：
+
+- https://fofa.so
+- http://www.yunsee.cn
+- https://www.shodan.io
+- https://www.ipaddress.com
+- https://www.exploit-db.com
+- https://gtfobins.github.io
 
 ## VulnHub
 
 [Vulnhub](https://www.vulnhub.com/)是一个面向公众开放的靶机平台，主旨是让任何人获得信息安全相关的实战经验。
 
-下面是我完成的一些靶机，你可以学习它们
+下面是我完成的一些靶机，你可以学习它们。
 
 - [HA:Dhanush](./VulnHub/HA-Dhanush.md)
 
@@ -27,5 +36,7 @@ Basics “基础” 顾名思义这是必须掌握的基本知识，而且它并
 ## HackTheBox
 
 [HackTheBox](https://www.hackthebox.eu/)是一个在线平台，允许你测试你的渗透测试技能，并与成千上万的安全领域的人交流思想和方法。
+
+下面是我完成的一些靶机，你可以学习它们。
 
 - [Traverxec](./HackTheBox/Traverxec.md)
