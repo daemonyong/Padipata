@@ -1,3 +1,3 @@
 # HackTheBox
 
-## [Obscurity](./Obscurity.md)
+## [Traverxec](./Traverxec.md)
