@@ -107,6 +107,15 @@ export PATH=$PATH:/usr/bin  #将/usr/bin目录导出到PATH环境变量
 /etc/shadow
 ```
 
+- 清理痕迹
+
+```
+echo > /var/log/wtmp
+echo > /var/log/btmp
+echo > /var/log/lastlog
+history -cw
+```
+
 ## Window
 
 - 基本命令
