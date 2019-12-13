@@ -382,7 +382,7 @@ B：ncat -nv IP 地址 端口 --ssl
 
 - skipfish 网站扫描
 
-> dpkg -L skipfish | grep wl
+> dpkg -L skipfish \| grep wl
 >
 > skipfish \[options...] -W wordlist -o path url
 
