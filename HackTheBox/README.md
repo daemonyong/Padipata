@@ -1,3 +1,0 @@
-# HackTheBox
-
-## [Traverxec](./Traverxec.md)
