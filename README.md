@@ -1,21 +1,29 @@
 # 世界这么大,我想去看看
 
-## [Kali](./Kali)
+## Kali
 
-## [Basics](./Basics)
+[Kali Linux](https://www.kali.org/)是一个渗透测试兼安全审计平台，集成了多款漏洞检测、目标识别和漏洞利用工具，在信息安全业界有着广泛的用途。[这里](./Kali)是我使用它的一些总结，希望可以帮助到你。
+
+## Basics
+
+Basics “基础” 顾名思义这是必须掌握的基本知识，而且它并不完善，我正在不断的补充它。如果你需要，[阅览](./Basics)它或许可以帮助到你。
 
 ## VulnHub
 
-- ### [HA:Dhanush](./VulnHub/HA-Dhanush.md)
+[Vulnhub](https://www.vulnhub.com/)是一个面向公众开放的靶机平台，主旨是让任何人获得信息安全相关的实战经验。
 
-### [bossplayersCTF](./VulnHub/bossplayersCTF.md)
+- [HA:Dhanush](./VulnHub/HA-Dhanush.md)
 
-### [Sunset:dawn](./VulnHub/Sunset-dawn.md)
+- [bossplayersCTF](./VulnHub/bossplayersCTF.md)
 
-### [Sunset:nightfall](./VulnHub/Sunset-nightfall.md)
+- [Sunset:dawn](./VulnHub/Sunset-dawn.md)
 
-### [Sunset](./VulnHub/Sunset.md)
+- [Sunset:nightfall](./VulnHub/Sunset-nightfall.md)
+
+- [Sunset](./VulnHub/Sunset.md)
 
 ## HackTheBox
 
-### [Traverxec](./HackTheBox/Traverxec.md)
+[HackTheBox](https://www.hackthebox.eu/)是一个在线平台，允许你测试你的渗透测试技能，并与成千上万的安全领域的人交流思想和方法。
+
+- [Traverxec](./HackTheBox/Traverxec.md)
