@@ -4,9 +4,9 @@
 
 [Kali Linux](https://www.kali.org/)是一个渗透测试兼安全审计平台，集成了多款漏洞检测、目标识别和漏洞利用工具，在信息安全业界有着广泛的用途。[这里](./Kali)是我使用它的一些总结，希望可以帮助到你。
 
-## Basics
+## Treasure
 
-Basics “基础” 顾名思义这是必须掌握的基础，而且它并不完善，我正在不断的补充它，这将是一个漫长的过程。如果你需要，[阅览](./Basics)它或许可以帮助到你。
+Treasure “宝藏” 顾名思义这是收藏的珍宝，而且它并没有收集完毕，我还在不断的丰富它，这将是一个漫长的过程。如果你需要，[阅览](./Treasure)它或许可以帮助到你。
 
 常用链接：
 
@@ -32,6 +32,8 @@ Basics “基础” 顾名思义这是必须掌握的基础，而且它并不完
 - [Sunset:nightfall](./VulnHub/Sunset-nightfall.md)
 
 - [Sunset](./VulnHub/Sunset.md)
+
+- [symfonos-1](./VulnHub/symfonos-1.md)
 
 ## HackTheBox
 

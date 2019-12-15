@@ -57,6 +57,19 @@ echo bye>>ftp.txt
 ftp -s:ftp.txt
 ```
 
+## SMTP
+
+```
+/var/mail/              #邮件日志
+telnet 192.168.0.1 25   #连接SMTP
+--------------------------------------------
+auth login              #用户身份认证(base64)
+mail from:              #标识邮件的发件人
+rcpt to:                #标识邮件的收件人
+data                    #启动邮件内容传输
+quit                    #结束会话
+```
+
 ## ARP
 
 ```
