@@ -1,6 +1,6 @@
 # Kali
 
-## Update
+## 更新
 
 ```
 apt-get update                       //更新软件包列表库
@@ -11,7 +11,38 @@ apt-get clean                        //清除缓存索引
 reboot                               //重启电脑
 ```
 
-## SSH
+## 基本工具
+
+- NC
+
+```
+-h     //显示帮助选项
+-l     //绑定并监听传入连接
+-p     //指定要使用的端口
+-c     //通过/bin/sh 执行给定的命令
+-e     //连接后执行程序
+-q     //执行完毕X秒后退出
+-n     //数字ip,不通过DNS解析
+-v     //显示详细信息
+-u     //使用UDP模式
+-z     //使用扫描模式
+------------------------------------
+A：nc -lp 端口 | 解密方式 > 文件
+B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
+```
+
+- Ncat
+
+```
+--allow         //只允许给定的主机连接到 ncat
+--ssl           //使用 SSL 连接或监听
+--keep-open     //在断开连接时保持侦听打开
+-------------------------------------
+A：ncat -c bash/cmd --allow IP 地址 -vnl 端口 --ssl
+B：ncat -nv IP 地址 端口 --ssl
+```
+
+- SSH
 
 ```
 service ssh start/restart/stop        #开启/重启/停止ssh服务
@@ -35,7 +66,7 @@ permitrootlogin yes
 -D <lport>                            #指定本地机器"动态的"应用程序端口转发
 ```
 
-## FTP
+- FTP
 
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
@@ -57,7 +88,7 @@ echo bye>>ftp.txt
 ftp -s:ftp.txt
 ```
 
-## SMTP
+- SMTP
 
 ```
 /var/mail/              #邮件日志
@@ -70,7 +101,260 @@ data                    #启动邮件内容传输
 quit                    #结束会话
 ```
 
-## ARP
+## 信息收集
+
+- https://fofa.so
+
+- http://www.yunsee.cn
+
+- https://www.shodan.io
+
+- https://www.ipaddress.com
+
+- Google
+
+```
+intitle:                         //搜索网页标题中是否有我们所要找的字符
+intext:                          //寻找特定网页里的关键字
+inurl:                           //搜索网址URL里面包含指定关键词的页面
+site:                            //只搜索指定网域里的关键词
+filetype:                        //搜索指定类型的文件
+link:                            //按引用搜索将列出所有包含特定链接的页面
+related:                         //按相似搜索将列出与指定网页相似的页面
+cache:                           //网页快照,google将返回给你他储存下来的历史页面
+index of                         //发现允许目录浏览的web网站
+```
+
+- Nmap
+
+  - 主机发现
+
+  ```
+  -sn                             //仅进行ping扫描,不进行端口扫描
+  -Pn                             //跳过目标存活判断,直接进行进一步的探测
+  -PS/PA/PU/PY[portlist]          //使用TCP SYN/ACK,UDP,SCTP INIT方式进行发现
+  -n/-R                           //-n表示不进行DNS解析,-R表示总是进行DNS解析
+  --dns-servers <serv>            //指定DNS服务器
+  --system-dns                    //指定使用系统的DNS服务器
+  ```
+
+  - 端口扫描
+
+  ```
+  -p <port>                       //只扫描指定的端口
+  -F                              //快速扫描
+  -sS/sT/sA/sW/sM                 //使用TCP SYN/Connect()/ACK/Window/Maimon 扫描方式
+  -sU                             //使用UDP扫描方式确定目标主机的UDP端口状况
+  -sN/sF/sX                       //使用TCP Null/FIN/Xmas秘密扫描方式来协助探测对方的TCP端口状态
+  -sI <idle:port>                 //使用idle scan方式来扫描目标主机
+  ```
+
+  - 版本侦测
+
+  ```
+  -sV                              //服务版本探测
+  --version-intensity <level>      //指定版本侦测强度(0-9),默认为7
+  --version-trace                  //显示出详细的版本侦测过程信息
+  ```
+
+  - 操作系统侦测
+
+  ```
+  -O                               //启用操作系统检测
+  -A                               //同时启用操作系统检测和版本扫描
+  --osscan-guess/fuzzy             //推测操作系统检测结果
+  ```
+
+  - 防火墙/IDS 规避
+
+  ```
+  -f/--mtu <val>                   //指定使用分片、指定数据包的MTU
+  -D <ip1,ip2,...,ME>              //用一组IP地址掩盖真实地址,ME代表本机IP地址
+  -S <IP>                          //伪装成其他IP地址
+  -g/--source-port <port>          //使用指定源端口
+  --data-length <num>              //填充随机数据让数据包长度达到Num
+  --ttl <time>                     //设置time-to-live时间
+  ```
+
+## Web 程序
+
+- dirb
+
+> dirb URL \[file] \[options]
+
+```
+-c <cookie_string>                //设置HTTP请求的cookie
+-H <header_string>                //向HTTP请求添加自定义头
+-i                                //使用不区分大小写的搜索
+-o <output_file>                  //将输出保存到磁盘
+-p <proxy[:port]>                 //使用这个代理(默认端口为1080)
+-P <username:password>            //代理身份验证
+-r                                //不递归搜索
+-R                                //交互式递归(询问每个目录)
+-u <username:password>            //HTTP身份验证
+-z <s>                            //添加一个毫秒的延迟,以避免造成过多的溢出
+```
+
+- skipfish
+
+> dpkg -L skipfish \| grep wl
+>
+> skipfish \[options...] -W wordlist -o path url
+
+```
+-A user:pass                      //使用指定的HTTP身份验证凭据
+-C name=val                       //将自定义Cookie附加到所有请求
+-H name=val                       //将自定义HTTP标头附加到所有请求
+-b <i|f|p>                        //使用与MSIE/Firefox/iPhone一致的标头
+-N                                //不接受任何新的cookie
+--auth-form url                   //表单认证URL
+--auth-user user                  //表单认证用户名
+--auth-pass pass                  //表单认证密码
+--auth-verify-url                 //认证成功跳转的URL
+-I string                         //只追踪与「string」匹配的网址
+-X string                         //排除与「string」匹配的网址
+-K string                         //不对指定参数进行Fuzz测试
+-o path                           //将输出写入指定目录（必填）
+-W wordlist                       //使用指定的读写词表
+-S wordlist                       //加载补充只读单词表
+-l num                            //每秒最大请求数
+```
+
+- sqlmap
+
+```
+-d                                #DBMS://user:password@ip:port/database_name
+-u url                            #目标网址(例如"http://www.site.com/vuln.php?id=1")
+-l logfile                        #解析来自Burp或WebScarab代理日志文件的目标
+-m file                           #扫描文本文件中给定的多个目标
+-r reqfile                        #从文件加载HTTP请求
+-p parameter                      #可测试的参数
+--method=METHOD                   #强制使用给定的HTTP方法(例如PUT)
+--data=DATA                       #通过POST发送数据参数(例如"id = 1")
+--cookie=COOKIE                   #HTTP Cookie标头值
+--random-agent                    #使用随机选择的HTTP User-Agent标头值
+--proxy=PROXY                     #使用代理连接到目标URL
+--tor                             #使用Tor匿名网络
+--force-ssl                       #强制使用SSL/HTTPS
+--level=LEVEL                     #要执行的测试级别(1-5,默认为1)
+--risk=RISK                       #执行测试的风险(0-3，默认为1)
+--technique=TECH                  #要使用的SQL注入技术(默认为“BEUSTQ”)
+```
+
+- wpscan
+
+```
+--url url                         #要扫描博客的URL
+-o/--output file                  #输出到文件
+--random-user-agent/--rua         #每次扫描都使用随机用户代理
+--http-auth login:password        #用户认证登录
+-e/--enumerate [opts]
+    vp                            #枚举有漏洞的插件
+    ap                            #枚举所有插件
+    p                             #枚举热门插件
+    vt                            #枚举有漏洞的主题
+    at                            #枚举所有主题
+    t                             #枚举热门主题
+    cb                            #枚举配置备份
+    tt                            #枚举Timthumb文件
+    u                             #枚举用户名
+-P/--passwords file               #密码攻击期间使用的密码列表
+-U/--usernames file               #密码攻击中使用的用户名列表
+--stealthy                        #随机用户代理,检测模式被动,插件版本检测被动
+```
+
+## 密码破解
+
+- Hydra
+
+> hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务
+>
+> http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
+
+```
+-R                             //继续从上一次进度开始
+-l                             //指定用户名
+-L                             //指定用户名字典
+-p                             //指定密码
+-P                             //指定密码字典
+-x min:max:charset             //密码暴力生成("-x -h"获取更多帮助)
+-e [nsr]                       //空密码,密码=用户名,颠倒
+-u                             //循环用户,而不是密码(-x同样有效)
+-o [file]                      //输出成文件
+-t [num]                       //同时运行的线程数,默认16
+-w [time]                      //设置最大超时的时间,默认30s
+-vV                            //显示详细过程
+-S                             //采用SSL链接
+-s [port]                      //指定非默认端口
+-f                             //当破解成功时就中止
+```
+
+- Medusa
+
+> medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
+
+```
+-h                              //目标主机名或IP地址
+-H [file]                       //包含目标主机名或IP地址的文件
+-u                              //指定用户名
+-U [file]                       //指定用户名字典
+-p                              //指定密码
+-P [file]                       //指定密码字典
+-e [n/s/ns]                     //空密码和密码=用户名
+-M                              //要执行的模块
+-L                              //每个线程使用一个用户名并行登录
+-t [num]                        //要同时测试的登录总数
+-T [num]                        //要同时测试的主机总数
+-f                              //发现第一个有效的用户名/密码后停止
+-F                              //在任何主机上找到第一个有效的用户名/密码后停止
+-n [num]                        //使用非默认的TCP端口号
+-s                              //启用SSL
+-O [file]                       //输出成文件
+-v <0-6>                        //显示详细信息
+```
+
+- John
+
+> unshadow /etc/passwd /etc/shadow > passwd
+>
+> python /usr/share/john/ssh2john.py id_rsa > passwd
+>
+> john --wordlist=/usr/share/wordlists/rockyou.txt passwd
+
+```
+--single[=section[,..]]          //single crack模式,使用默认或命名规则
+--wordlist[file] --stdin         //单词列表模式,从文件或标准输出中读取单词
+                 --pipe          //和--stdin一样,批量读取,并允许使用规则
+--loopback[file]                 //类似于--wordlist，但从.pot文件中提取单词
+--rules[section[,..]]            //启用单词处理规则,使用默认规则或命名规则
+--incremental[mode]              //"增量"模式[使用部分模式]
+--mask[mask]                     //使用掩码模式(或john.conf中的默认设置)
+--external=mode                  //外部模式或字过滤器
+--restore[name]                  //恢复中断的会话[名为name]
+--session=name                   //进行新的会话"name"
+--show[file]                     //显示破解的密码
+--format=name                    //强制输入name类型的哈希
+```
+
+- Hashcat
+
+> hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
+
+```
+-a <0/1/2>                        //指定要使用的破解模式[0-字典攻击,1-组合攻击,3-掩码攻击]
+-m <id>                           //指定要破解的hash类型ID,如果不指定类型默认为MD5
+-i  --increment                   //启用增量破解模式
+    --increment-min               //密码最小长度
+    --increment-max               //密码最大长度
+-o  --outfile                     //将破解成功的hash输出在指定目录的文件中
+    --outfile-format              //指定破解结果的输出格式ID,默认3
+--force                           //忽略警告信息
+--show                            //显示已经破解的hash及该hash所对应的明文
+```
+
+## 嗅探/欺骗
+
+- ARP
 
 ```
 echo 1 > /proc/sys/net/ipv4/ip_forward            //路由转发
@@ -78,7 +362,27 @@ arpspoof -i eth0 -t 192.168.0.144 192.168.0.1     //arp欺骗
 driftnet -i eth0                                  //图片嗅探
 ```
 
-## Dos
+- Bettercap
+
+> 开启本地(远程)的 WebUI -------→ bettercap -caplet http(s)-ui
+
+```
+net.show          //展示网络情况
+net.probe         //主动探测
+arp.spoof         //ARP欺骗
+http.proxy        //http代理
+net.sniff         //开启嗅探
+dns.spoof         //DNS欺骗
+---------------------------------------------------------------
+set arp.spoof.targets 192.168.1.1         //设置欺骗的IP目标
+set http.proxy.sslstrip true              //将HTTPS降级到HTTP
+set http.proxy.script xss.js              //代理执行的脚本
+set net.sniff.verbose false               //精简化显示数据
+set dns.spoof.domains google.com          //设置要欺骗的域名
+set dns.spoof.address desired_IP          //设置要重定向的地址
+```
+
+## 拒绝服务
 
 > iptables -A OUTPUT -p tcp --tcp-flags RST RST -d 192.168.0.1 -j DROP
 
@@ -103,192 +407,6 @@ driftnet -i eth0                                  //图片嗅探
 -p time         //指定等待时间来确认DoS攻击已经成功
 -t method       //在请求时使用什么操作,默认GET
 -d host:port    //通过host:port上的HTTP代理定向的所有流量
-```
-
-## Apache
-
-```
-service apache2 start/restart/stop    #开启/重启/停止Apache服务
-/var/www/html                         #网站存放路径
-```
-
-## Nmap
-
-- 主机发现:
-
-```
--sn                             //仅进行ping扫描,不进行端口扫描
--Pn                             //跳过目标存活判断,直接进行进一步的探测
--PS/PA/PU/PY[portlist]          //使用TCP SYN/ACK,UDP,SCTP INIT方式进行发现
--n/-R                           //-n表示不进行DNS解析,-R表示总是进行DNS解析
---dns-servers <serv>            //指定DNS服务器
---system-dns                    //指定使用系统的DNS服务器
-```
-
-- 端口扫描
-
-```
--p <port>                       //只扫描指定的端口
--F                              //快速扫描
--sS/sT/sA/sW/sM                 //使用TCP SYN/Connect()/ACK/Window/Maimon 扫描方式
--sU                             //使用UDP扫描方式确定目标主机的UDP端口状况
--sN/sF/sX                       //使用TCP Null/FIN/Xmas秘密扫描方式来协助探测对方的TCP端口状态
--sI <idle:port>                 //使用idle scan方式来扫描目标主机
-```
-
-- 版本侦测
-
-```
--sV                              //服务版本探测
---version-intensity <level>      //指定版本侦测强度(0-9),默认为7
---version-trace                  //显示出详细的版本侦测过程信息
-```
-
-- 操作系统侦测
-
-```
--O                               //启用操作系统检测
--A                               //同时启用操作系统检测和版本扫描
---osscan-guess/fuzzy             //推测操作系统检测结果
-```
-
-- 防火墙/IDS 规避
-
-```
--f/--mtu <val>                   //指定使用分片、指定数据包的MTU
--D <ip1,ip2,...,ME>              //用一组IP地址掩盖真实地址,ME代表本机IP地址
--S <IP>                          //伪装成其他IP地址
--g/--source-port <port>          //使用指定源端口
---data-length <num>              //填充随机数据让数据包长度达到Num
---ttl <time>                     //设置time-to-live时间
-```
-
-## Google
-
-```
-intitle:                         //搜索网页标题中是否有我们所要找的字符
-intext:                          //寻找特定网页里的关键字
-inurl:                           //搜索网址URL里面包含指定关键词的页面
-site:                            //只搜索指定网域里的关键词
-filetype:                        //搜索指定类型的文件
-link:                            //按引用搜索将列出所有包含特定链接的页面
-related:                         //按相似搜索将列出与指定网页相似的页面
-cache:                           //网页快照,google将返回给你他储存下来的历史页面
-index of                         //发现允许目录浏览的web网站
-```
-
-## Nessus
-
-```
-service nessusd start/stop       #开启/停止Nessus
-https://192.168.253.139:8834/    #网站地址(可变)
-```
-
-## Hydra
-
-> hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务
->
-> http-form-post "/login.php:username=^USER^&password=^PASS^:S=login.php"
-
-```
--R                             //继续从上一次进度开始
--l                             //指定用户名
--L                             //指定用户名字典
--p                             //指定密码
--P                             //指定密码字典
--x min:max:charset             //密码暴力生成("-x -h"获取更多帮助)
--e [nsr]                       //空密码,密码=用户名,颠倒
--u                             //循环用户,而不是密码(-x同样有效)
--o [file]                      //输出成文件
--t [num]                       //同时运行的线程数,默认16
--w [time]                      //设置最大超时的时间,默认30s
--vV                            //显示详细过程
--S                             //采用SSL链接
--s [port]                      //指定非默认端口
--f                             //当破解成功时就中止
-```
-
-## Medusa
-
-> medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
-
-```
--h                              //目标主机名或IP地址
--H [file]                       //包含目标主机名或IP地址的文件
--u                              //指定用户名
--U [file]                       //指定用户名字典
--p                              //指定密码
--P [file]                       //指定密码字典
--e [n/s/ns]                     //空密码和密码=用户名
--M                              //要执行的模块
--L                              //每个线程使用一个用户名并行登录
--t [num]                        //要同时测试的登录总数
--T [num]                        //要同时测试的主机总数
--f                              //发现第一个有效的用户名/密码后停止
--F                              //在任何主机上找到第一个有效的用户名/密码后停止
--n [num]                        //使用非默认的TCP端口号
--s                              //启用SSL
--O [file]                       //输出成文件
--v <0-6>                        //显示详细信息
-```
-
-## John
-
-> unshadow /etc/passwd /etc/shadow > passwd
->
-> python /usr/share/john/ssh2john.py id_rsa > passwd
->
-> john --wordlist=/usr/share/wordlists/rockyou.txt  passwd
-
-```
---single[=section[,..]]          //single crack模式,使用默认或命名规则
---wordlist[file] --stdin         //单词列表模式,从文件或标准输出中读取单词
-                 --pipe          //和--stdin一样,批量读取,并允许使用规则
---loopback[file]                 //类似于--wordlist，但从.pot文件中提取单词
---rules[section[,..]]            //启用单词处理规则,使用默认规则或命名规则
---incremental[mode]              //"增量"模式[使用部分模式]
---mask[mask]                     //使用掩码模式(或john.conf中的默认设置)
---external=mode                  //外部模式或字过滤器
---restore[name]                  //恢复中断的会话[名为name]
---session=name                   //进行新的会话"name"
---show[file]                     //显示破解的密码
---format=name                    //强制输入name类型的哈希
-```
-
-## Hashcat
-
-> hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
-
-```
--a <0/1/2>                        //指定要使用的破解模式[0-字典攻击,1-组合攻击,3-掩码攻击]
--m <id>                           //指定要破解的hash类型ID,如果不指定类型默认为MD5
--i  --increment                   //启用增量破解模式
-    --increment-min               //密码最小长度
-    --increment-max               //密码最大长度
--o  --outfile                     //将破解成功的hash输出在指定目录的文件中
-    --outfile-format              //指定破解结果的输出格式ID,默认3
---force                           //忽略警告信息
---show                            //显示已经破解的hash及该hash所对应的明文
-```
-
-## Bettercap
-
-> 开启本地(远程)的 WebUI -------→ bettercap -caplet http(s)-ui
-
-```
-net.show          //展示网络情况
-net.probe         //主动探测
-arp.spoof         //ARP欺骗
-http.proxy        //http代理
-net.sniff         //开启嗅探
-dns.spoof         //DNS欺骗
----------------------------------------------------------------
-set arp.spoof.targets 192.168.1.1         //设置欺骗的IP目标
-set http.proxy.sslstrip true              //将HTTPS降级到HTTP
-set http.proxy.script xss.js              //代理执行的脚本
-set net.sniff.verbose false               //精简化显示数据
-set dns.spoof.domains google.com          //设置要欺骗的域名
-set dns.spoof.address desired_IP          //设置要重定向的地址
 ```
 
 ## Metasploit
@@ -343,103 +461,9 @@ run get_application_list        //软件信息
 run dumplinks                   //最近操作
 ```
 
-## Great Tools
+## 权限维护
 
-- NC
-
-```
--h     //显示帮助选项
--l     //绑定并监听传入连接
--p     //指定要使用的端口
--c     //通过/bin/sh 执行给定的命令
--e     //连接后执行程序
--q     //执行完毕X秒后退出
--n     //数字ip,不通过DNS解析
--v     //显示详细信息
--u     //使用UDP模式
--z     //使用扫描模式
-------------------------------------
-A：nc -lp 端口 | 解密方式 > 文件
-B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
-```
-
-- Ncat
-
-```
---allow         //只允许给定的主机连接到 ncat
---ssl           //使用 SSL 连接或监听
---keep-open     //在断开连接时保持侦听打开
--------------------------------------
-A：ncat -c bash/cmd --allow IP 地址 -vnl 端口 --ssl
-B：ncat -nv IP 地址 端口 --ssl
-```
-
-## Web Tools
-
-- dirb 目录扫描
-
-> dirb URL \[file] \[options]
-
-```
--c <cookie_string>                //设置HTTP请求的cookie
--H <header_string>                //向HTTP请求添加自定义头
--i                                //使用不区分大小写的搜索
--o <output_file>                  //将输出保存到磁盘
--p <proxy[:port]>                 //使用这个代理(默认端口为1080)
--P <username:password>            //代理身份验证
--r                                //不递归搜索
--R                                //交互式递归(询问每个目录)
--u <username:password>            //HTTP身份验证
--z <s>                            //添加一个毫秒的延迟,以避免造成过多的溢出
-```
-
-- skipfish 网站扫描
-
-> dpkg -L skipfish \| grep wl
->
-> skipfish \[options...] -W wordlist -o path url
-
-```
--A user:pass                      //使用指定的HTTP身份验证凭据
--C name=val                       //将自定义Cookie附加到所有请求
--H name=val                       //将自定义HTTP标头附加到所有请求
--b <i|f|p>                        //使用与MSIE/Firefox/iPhone一致的标头
--N                                //不接受任何新的cookie
---auth-form url                   //表单认证URL
---auth-user user                  //表单认证用户名
---auth-pass pass                  //表单认证密码
---auth-verify-url                 //认证成功跳转的URL
--I string                         //只追踪与「string」匹配的网址
--X string                         //排除与「string」匹配的网址
--K string                         //不对指定参数进行Fuzz测试
--o path                           //将输出写入指定目录（必填）
--W wordlist                       //使用指定的读写词表
--S wordlist                       //加载补充只读单词表
--l num                            //每秒最大请求数
-```
-
-- sqlmap 数据库检测
-
-```
--d                                #DBMS://user:password@ip:port/database_name
--u url                            #目标网址(例如"http://www.site.com/vuln.php?id=1")
--l logfile                        #解析来自Burp或WebScarab代理日志文件的目标
--m file                           #扫描文本文件中给定的多个目标
--r reqfile                        #从文件加载HTTP请求
--p parameter                      #可测试的参数
---method=METHOD                   #强制使用给定的HTTP方法(例如PUT)
---data=DATA                       #通过POST发送数据参数(例如"id = 1")
---cookie=COOKIE                   #HTTP Cookie标头值
---random-agent                    #使用随机选择的HTTP User-Agent标头值
---proxy=PROXY                     #使用代理连接到目标URL
---tor                             #使用Tor匿名网络
---force-ssl                       #强制使用SSL/HTTPS
---level=LEVEL                     #要执行的测试级别(1-5,默认为1)
---risk=RISK                       #执行测试的风险(0-3，默认为1)
---technique=TECH                  #要使用的SQL注入技术(默认为“BEUSTQ”)
-```
-
-## Mimikatz
+- Mimikatz
 
 ```
 privilege::debug
@@ -447,9 +471,9 @@ sekurlsa::minidump lsass.dmp
 sekurlsa::logonpasswords full
 ```
 
-## Expand
+## 扩展工具
 
 - [中国蚁剑](https://github.com/AntSwordProject/AntSword-Loader)
-- [web密码检索](https://github.com/djhohnstein/SharpWeb)
+- [web 密码检索](https://github.com/djhohnstein/SharpWeb)
 - [密码检索工具](https://github.com/AlessandroZ/LaZagne)
-- [Linux提权检查](https://github.com/rebootuser/LinEnum)
+- [Linux 提权检查](https://github.com/rebootuser/LinEnum)
