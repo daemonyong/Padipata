@@ -319,7 +319,7 @@ index of                         //发现允许目录浏览的web网站
 >
 > python /usr/share/john/ssh2john.py id_rsa > passwd
 >
-> john --wordlist=/usr/share/wordlists/rockyou.txt passwd
+> john --wordlist=/root/password/rockyou.txt  passwd
 
 ```
 --single[=section[,..]]          //single crack模式,使用默认或命名规则
@@ -447,7 +447,7 @@ webcam_snap                     //从指定的网络摄像头拍摄快照
 webcam_stream                   //从指定的网络摄像头播放视频流
 -----------------------------------------
 sysinfo                         //获取操作系统的信息
-portfwd                         //将本地端口转发到远程服务
+portfwd                         //端口转发
 getprivs                        //尝试启用当前进程可用的所有特权
 getsystem                       //尝试提权
 hashdump                        //导出密码的哈希

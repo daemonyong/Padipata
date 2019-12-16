@@ -19,7 +19,7 @@ nmap -A 192.168.253.143
 ![](./img/symfonos1-01.png)
 
 ```
-enum4linux 192.168.253.143
+enum4linux -a 192.168.253.143
 ```
 
 ![](./img/symfonos1-02.png)
