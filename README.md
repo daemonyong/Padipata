@@ -8,6 +8,11 @@
 
 Treasure “宝藏” 顾名思义这是收藏的珍宝，而且它并没有收集完毕，我还在不断的丰富它，这将是一个漫长的过程。如果你需要，[阅览](./Treasure)它或许可以帮助到你。
 
+推荐链接：
+
+- https://gtfobins.github.io/
+- https://www.exploit-db.com/
+
 ## VulnHub
 
 [Vulnhub](https://www.vulnhub.com/)是一个面向公众开放的靶机平台，主旨是让任何人获得信息安全相关的实战经验。
