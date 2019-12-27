@@ -237,7 +237,7 @@ index of                         //发现允许目录浏览的web网站
 --data=DATA                       #通过POST发送数据参数(例如"id = 1")
 --cookie=COOKIE                   #HTTP Cookie标头值
 --random-agent                    #使用随机选择的HTTP User-Agent标头值
---proxy=PROXY                     #使用代理连接到目标URL
+--proxy=PROXY                     #使用代理连接目标
 --tor                             #使用Tor匿名网络
 --force-ssl                       #强制使用SSL/HTTPS
 --level=LEVEL                     #要执行的测试级别(1-5,默认为1)

