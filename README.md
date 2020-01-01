@@ -49,6 +49,7 @@ Treasure “宝藏” 顾名思义这是收藏的珍宝，而且它并没有收�
 
 - [symfonos-3](./VulnHub/symfonos-3.md)
 
+- [symfonos-4](./VulnHub/symfonos-4.md)
 ## HackTheBox
 
 [HackTheBox](https://www.hackthebox.eu/)是一个在线平台，允许你测试你的渗透测试技能，并与成千上万的安全领域的人交流思想和方法。
